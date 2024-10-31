@@ -1,0 +1,93 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'poppins', sans-serif;
+}
+
+#container {
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(to right, rgba(166, 0, 255, 0.526), rgba(255, 174, 0, 0.526));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#calculator{
+    display: flex;
+    flex-direction: column;
+    max-width: 250px;
+    background: rgb(34, 41, 33);
+    border-radius: 10px;
+}
+#display {
+    color: white;
+    height: 90px;
+    width: 100%;
+    max-width: 350px;
+    padding-right: 12px;
+    text-align: right;
+    border-radius: 10px 10px 0 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    overflow: hidden;
+}
+.previous-display {
+    font-size: 1rem;
+    opacity: .7;
+    max-width: 350px;
+}
+.current-display {
+    font-size: 2rem;
+    white-space: nowrap; /* Mencegah pembungkus kata */
+    overflow: hidden; /* Menyembunyikan teks yang melampaui */
+    /* text-overflow: ellipsis; Menampilkan elipsis (...) jika teks terlalu panjang */
+}
+
+#buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    padding: 8px;
+    gap: 7px;
+}
+button {
+    width: 50px;
+    height: 50px;
+    border: 0;
+    outline: 0;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 600;
+    background-color: rgb(99, 99, 99);
+    color: whitesmoke;
+    cursor: pointer;
+}
+button:hover {
+    background-color: rgb(126, 126, 126)
+}
+button:active {
+    background-color: rgb(151, 151, 151)
+}
+
+.operand {
+    background-color: rgba(237, 245, 254, 0.875);
+    color: black;
+}
+.operand:hover {
+    background-color: rgba(244, 249, 253, 0.907);
+}
+.operand:active {
+    background-color: rgba(255, 255, 255, 0.928);
+}
+
+.operator, .equal {
+    background-color: rgb(255, 166, 0);
+}
+.operator:hover, .equal:hover {
+    background-color: rgb(255, 180, 40);
+}
+.operator:active, .equal:active {
+    background-color: rgb(255, 204, 109);
+}
