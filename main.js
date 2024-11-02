@@ -31,45 +31,47 @@ numbers.forEach((number) => {
 
 // operator
 const mathOperation = () => {
-    if (operation == 'x') {
+    if (operation == 'x' && currentNum) {
         result = parseFloat(previousNum) * parseFloat(currentNum);
         currentNum = result;
         currentDisplay.textContent = currentNum;
-    } else if (operation == '/') {
+    } else if (operation == '/' && currentNum) {
         result = parseFloat(previousNum) / parseFloat(currentNum);
         currentNum = result;
         currentDisplay.textContent = currentNum;
-    } else if (operation == '-') {
+    } else if (operation == '-' && currentNum) {
         result = parseFloat(previousNum) - parseFloat(currentNum);
         currentNum = result;
         currentDisplay.textContent = currentNum;
-    } else if (operation == '+') {
-        result = parseFloat(previousNum) + parseFloat(currentNum);
+    } else if (operation == '+' && currentNum) {
+        result = parseInt(previousNum) + parseInt(currentNum);
         currentNum = result;
         currentDisplay.textContent = currentNum;
-    } else if (operation == '%') {
+    } else if (operation == '%' && currentNum) {
         result = parseFloat(previousNum) % parseFloat(currentNum);
         currentNum = result;
         currentDisplay.textContent = currentNum;
-    }
+    } 
 
 }
-
+let haveOperation = false
 operators.forEach(operator => {
     operator.addEventListener('click', (e) => {
-        // if (!currentNum) return;
-        if (currentNum.length == 0) return;
+        if (!currentNum) return;
+        // if (!currentNum && !operation && !previousNum) return;
+        // if (currentNum.length == 0) {
+        //     result = previousNum * currentNum
+        // }
 
         haveDot = false;
         
         mathOperation()
         
         operation = e.target.textContent;
-        previousNum = `${parseFloat(currentNum)} ${operation} `;
+        previousNum = `${currentNum} ${operation} `;
         previousDisplay.textContent = previousNum;
+        // currentDisplay.textContent = currentNum
         console.log(operation);
-        
-
 
         currentNum = '0';
         currentDisplay.textContent = currentNum;
@@ -113,8 +115,27 @@ const clearOneNum = document.querySelector('[data-delete]').addEventListener('cl
 
 // equal or result
 equal.addEventListener('click', () => {
+    if(!currentNum || !previousDisplay) return;
+    haveDot = false;
     mathOperation();
     operation = '';
     previousNum = '';
     previousDisplay.textContent = previousNum;
+    
+    
+    // still progres
+    // if (operators) {
+    //     currentNum = result; // when we click operation after result, it'll continue result and calculation result with (new input or new number )
+    //     mathOperation(); // 
+    // } 
+    // if (numbers){
+    //     currentNum = ''; // when we click input number after result it'll restart the calculation
+    //     mathOperation(); // after currentNum is empty it would be doing calculation again from beginning
+    // } 
+    // else if (operators) {
+    //     currentNum = result;
+    //     previousNum = `${currentNum} ${operation}`
+    //     previousDisplay.textContent = previousNum
+    //     mathOperation()
+    // }
 });
